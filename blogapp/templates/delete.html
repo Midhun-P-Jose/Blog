@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Blog</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .delete-box {
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Fix: Make both button & anchor identical */
+        .btn,
+        .btn:link,
+        .btn:visited,
+        .btn-cancel {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            box-sizing: border-box; /* SUPER IMPORTANT FIX */
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.2s;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Delete */
+        .btn-delete {
+            background: #ff4d4d;
+            border: none;
+        }
+        .btn-delete:hover {
+            background: #d93636;
+        }
+
+        /* Cancel */
+        .btn-cancel {
+            background: #4f8eff;
+            border: none;
+        }
+        .btn-cancel:hover {
+            background: #2568ff;
+        }
+
+        @media (max-width: 480px) {
+            .delete-box {
+                padding: 22px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="delete-box">
+        <h1>Do you want to delete <br> <strong>{{ post.Title }}</strong>?</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-delete">Delete</button>
+        </form>
+
+        <a href="{% url 'home' %}" class="btn btn-cancel">Cancel</a>
+    </div>
+
+</body>
+</html>
